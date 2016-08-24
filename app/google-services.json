@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1030243128261",
+    "firebase_url": "https://inami-smf.firebaseio.com",
+    "project_id": "inami-smf",
+    "storage_bucket": "inami-smf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030243128261:android:a504cef78e0291e2",
+        "android_client_info": {
+          "package_name": "com.inami.smf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030243128261-ejgul4hm22fc8s82r7evc54nthod26t7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXX46C8AwT-LPIog8FEOge-GfI79-AIb0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
