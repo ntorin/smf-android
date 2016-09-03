@@ -19,4 +19,19 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="bbs">BBS</string>
+    <string name="personal">Personal</string>
+    <string name="notifications">Notifications</string>
+    <string name="preferences">Preferences</string>
+    <string name="personalize">Personalize</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="fragment_personal">fragment_personal</string>
+    <string name="fragment_bbs">fragment_bbs</string>
+    <string name="fragment_notifications">fragment_notifications</string>
+    <string name="fragment_account_settings">fragment_account_settings</string>
 </resources>

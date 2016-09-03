@@ -299,7 +299,7 @@ public class SignIn extends AppCompatActivity implements LoaderCallbacks<Cursor>
 
         private final String mEmail;
         private final String mPassword;
- 
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;

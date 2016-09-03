@@ -1,20 +1,40 @@
 package com.inami.smf;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.inami.smf.account.AccountSettingsFragment;
+import com.inami.smf.bbs.BBSFragment;
+import com.inami.smf.notifications.NotificationsFragment;
+import com.inami.smf.personal.FeedFragment;
+import com.inami.smf.personal.GroupsFragment;
+import com.inami.smf.personal.MessagesFragment;
+import com.inami.smf.personal.PersonalFragment;
+import com.inami.smf.personal.ProfileFragment;
+import com.inami.smf.personal.SingleGroupFragment;
+
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        PersonalFragment.OnFragmentInteractionListener,
+        FeedFragment.OnFragmentInteractionListener,
+        GroupsFragment.OnFragmentInteractionListener,
+        MessagesFragment.OnFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener,
+        BBSFragment.OnFragmentInteractionListener,
+        NotificationsFragment.OnFragmentInteractionListener,
+        AccountSettingsFragment.OnFragmentInteractionListener,
+        SingleGroupFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +42,6 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +51,12 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            Fragment personalFragment = PersonalFragment.newInstance();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.fragment_container, personalFragment, getString(R.string.fragment_personal)).commit();
+        }
     }
 
     @Override
@@ -74,28 +91,51 @@ public class Home extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        Fragment fragment = null;
+        String tag = "";
+        switch (id) {
+            case R.id.nav_bbs:
+                tag = getString(R.string.fragment_bbs);
+                fragment = BBSFragment.newInstance();
+                break;
+            case R.id.nav_personal:
+                tag = getString(R.string.fragment_personal);
+                fragment = PersonalFragment.newInstance();
+                break;
+            case R.id.nav_notifications:
+                tag = getString(R.string.fragment_notifications);
+                fragment = NotificationsFragment.newInstance();
+                break;
+            case R.id.nav_account_settings:
+                tag = getString(R.string.fragment_account_settings);
+                fragment = AccountSettingsFragment.newInstance();
+                break;
         }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, fragment, tag).commit();
+        Log.d("#fragments", " " + getSupportFragmentManager().getFragments().size());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onSingleGroupFocus() {
+        Fragment f = SingleGroupFragment.newInstance();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+        ft.replace(R.id.fragment_container, f).commit();
     }
 }
