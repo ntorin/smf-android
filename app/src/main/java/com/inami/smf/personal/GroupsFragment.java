@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.inami.smf.R;
+import com.inami.smf.utils.DummyAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ import com.inami.smf.R;
 public class GroupsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private ListView mListView;
 
     public GroupsFragment() {
         // Required empty public constructor
@@ -62,6 +65,8 @@ public class GroupsFragment extends Fragment {
                 mListener.onSingleGroupFocus();
             }
         });
+        mListView = (ListView) v.findViewById(R.id.groups_list);
+        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 

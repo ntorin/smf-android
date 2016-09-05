@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.inami.smf.usersearch.UserSearchFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
         android:id="@+id/groups_search_toolbar"
         android:layout_width="match_parent"
@@ -42,5 +45,23 @@
 
 
     </android.support.v7.widget.Toolbar>
+        <RelativeLayout
+            android:layout_below="@id/groups_search_toolbar"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/user_search_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+            </ListView>
+
+        </RelativeLayout>
+    </RelativeLayout>
 
 </FrameLayout>

@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.inami.smf.account.AccountSettingsFragment;
 import com.inami.smf.bbs.BBSFragment;
+import com.inami.smf.bbs.ThreadFragment;
 import com.inami.smf.notifications.NotificationsFragment;
 import com.inami.smf.personal.FeedFragment;
 import com.inami.smf.personal.GroupsFragment;
@@ -35,7 +36,9 @@ public class Home extends AppCompatActivity
         BBSFragment.OnFragmentInteractionListener,
         NotificationsFragment.OnFragmentInteractionListener,
         AccountSettingsFragment.OnFragmentInteractionListener,
-        SingleGroupFragment.OnFragmentInteractionListener {
+        SingleGroupFragment.OnFragmentInteractionListener,
+        UserSearchFragment.OnFragmentInteractionListener,
+        ThreadFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +137,14 @@ public class Home extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onThreadFocus() {
+        Fragment f = ThreadFragment.newInstance();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+        ft.replace(R.id.fragment_container, f).commit();
     }
 
     @Override

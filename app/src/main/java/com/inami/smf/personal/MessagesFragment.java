@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.inami.smf.R;
+import com.inami.smf.utils.DummyAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +23,7 @@ import com.inami.smf.R;
 public class MessagesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private ListView mListView;
 
     public MessagesFragment() {
         // Required empty public constructor
@@ -51,7 +54,10 @@ public class MessagesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_messages, container, false);
+        View v = inflater.inflate(R.layout.fragment_messages, container, false);
+        mListView = (ListView) v.findViewById(R.id.messages_list);
+        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -90,6 +90,7 @@
                 android:textSize="10pt"
                 android:text="@string/recent_activity"/>
             <ListView
+                android:id="@+id/profile_activity_list"
                 android:layout_below="@id/profile_recent_activity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

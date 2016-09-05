@@ -2,11 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.inami.smf.notifications.NotificationsFragment">
+    tools:context="com.inami.smf.bbs.ThreadFragment">
 
-    <ListView
-        android:id="@+id/notifications_list"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:text="fragment_thread" />
 
 </FrameLayout>

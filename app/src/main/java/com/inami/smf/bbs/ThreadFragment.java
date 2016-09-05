@@ -1,4 +1,4 @@
-package com.inami.smf.personal;
+package com.inami.smf.bbs;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,25 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.inami.smf.R;
-import com.inami.smf.utils.DummyAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FeedFragment.OnFragmentInteractionListener} interface
+ * {@link ThreadFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FeedFragment#newInstance} factory method to
+ * Use the {@link ThreadFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FeedFragment extends Fragment {
+public class ThreadFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private ListView mListView;
 
-    public FeedFragment() {
+    public ThreadFragment() {
         // Required empty public constructor
     }
 
@@ -33,11 +30,11 @@ public class FeedFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment FeedFragment.
+     * @return A new instance of fragment ThreadFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FeedFragment newInstance() {
-        FeedFragment fragment = new FeedFragment();
+    public static ThreadFragment newInstance() {
+        ThreadFragment fragment = new ThreadFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -53,11 +50,8 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_feed, container, false);
-        mListView = (ListView) v.findViewById(R.id.feed_list);
-        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
-        return v;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_thread, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

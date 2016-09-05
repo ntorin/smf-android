@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.inami.smf.R;
+import com.inami.smf.utils.DummyAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +23,7 @@ import com.inami.smf.R;
  */
 public class BBSFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
+    private ListView mListView;
 
     public BBSFragment() {
         // Required empty public constructor
@@ -50,7 +54,17 @@ public class BBSFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bbs, container, false);
+        View v = inflater.inflate(R.layout.fragment_bbs, container, false);
+        ImageButton b = (ImageButton) v.findViewById(R.id.btn_new_thread);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onThreadFocus();
+            }
+        });
+        mListView = (ListView) v.findViewById(R.id.bbs_list);
+        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,5 +104,7 @@ public class BBSFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+        void onThreadFocus();
     }
 }
