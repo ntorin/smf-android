@@ -1,13 +1,103 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.inami.smf.personal.SingleGroupFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/group_name_description_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/darkTint"
+        android:padding="2pt"
+        android:layout_height="52pt">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/group_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="32pt"
+                android:textSize="12pt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:lines="2"
+                android:textColor="@color/white"
+                android:text="@string/group_screen_name"/>
+            <TextView
+                android:id="@+id/group_short_description"
+                android:layout_below="@id/group_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="16pt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/group_short_description"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/group_picture_badges"
+        android:layout_below="@id/group_name_description_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:padding="15dp">
+        <ImageButton
+            android:id="@+id/group_picture"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@color/colorPrimary"/>
+
+        <RelativeLayout
+            android:paddingLeft="25dp"
+            android:paddingStart="25dp"
+            android:layout_toRightOf="@id/group_picture"
+            android:id="@+id/group_badges"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/group_picture_badges"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="singlegroup" />
+        android:padding="15dp">
+        <ScrollView
+            android:id="@+id/group_stats"
+            android:layout_width="96dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+        </ScrollView>
+
+
+        <RelativeLayout
+            android:paddingLeft="25dp"
+            android:paddingStart="25dp"
+            android:layout_toRightOf="@id/group_stats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/group_recent_activity"
+                android:layout_width="match_parent"
+                android:layout_height="14pt"
+                android:textSize="10pt"
+                android:text="@string/recent_activity"/>
+            <ListView
+                android:layout_below="@id/group_recent_activity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent">
+
+            </ListView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+

@@ -34,4 +34,14 @@
     <string name="fragment_bbs">fragment_bbs</string>
     <string name="fragment_notifications">fragment_notifications</string>
     <string name="fragment_account_settings">fragment_account_settings</string>
+    <string name="user_screen_name">Screen Name\n(accountid)</string>
+    <string name="profile_short_description">A short description, up to 100 characters long.
+        A short description, up to 100 characters long. A sh</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="group_screen_name">Group Screen Name\n(groupid)</string>
+    <string name="group_short_description">A short description, up to 100 characters long.
+        A short description, up to 100 characters long. A sh</string>
+    <string name="connect">Connect</string>
+    <string name="user_search">User Search</string>
+    <string name="fragment_user_search">fragment_user_search</string>
 </resources>

@@ -7,13 +7,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="match_parent">
 
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/groups_search_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="56dp"
             android:paddingEnd="15dp"
             android:paddingRight="15dp"
             android:paddingTop="15dp">
@@ -49,11 +49,26 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <RelativeLayout
             android:layout_below="@id/groups_search_toolbar"
-            android:paddingTop="15dp"></ListView>
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+            </ListView>
+
+        </RelativeLayout>
+
+
+
+
 
     </RelativeLayout>
 

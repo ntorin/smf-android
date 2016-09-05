@@ -16,6 +16,15 @@
             android:title="@string/notifications" />
     </group>
 
+    <item android:title="@string/connect">
+        <menu>
+            <item
+                android:id="@+id/nav_user_search"
+                android:icon="@drawable/profile_material_48dp"
+                android:title="@string/user_search" />
+        </menu>
+    </item>
+
     <item android:title="@string/personalize">
         <menu>
             <item

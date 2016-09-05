@@ -23,6 +23,7 @@ import com.inami.smf.personal.MessagesFragment;
 import com.inami.smf.personal.PersonalFragment;
 import com.inami.smf.personal.ProfileFragment;
 import com.inami.smf.personal.SingleGroupFragment;
+import com.inami.smf.usersearch.UserSearchFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -114,6 +115,10 @@ public class Home extends AppCompatActivity
             case R.id.nav_account_settings:
                 tag = getString(R.string.fragment_account_settings);
                 fragment = AccountSettingsFragment.newInstance();
+                break;
+            case R.id.nav_user_search:
+                tag = getString(R.string.fragment_user_search);
+                fragment = UserSearchFragment.newInstance();
                 break;
         }
 
