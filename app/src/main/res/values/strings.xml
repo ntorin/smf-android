@@ -44,4 +44,9 @@
     <string name="connect">Connect</string>
     <string name="user_search">User Search</string>
     <string name="fragment_user_search">fragment_user_search</string>
+    <string name="screen_name">Screen Name</string>
+    <string name="thread_title">Thread Title</string>
+    <string name="decently_long_text">After taking a glimpse of the 30 man raid today in kTera, I\'m sure we are all hyped up for this exciting new raid! Amaterasu has the numbers and skill to do this without any outside help, and that\'s exactly what we are going to do! We will be reaching for the top and going for the NA first clear of this challenging dungeon! But first we have to prepare. We will launch this in 4 phases, so please keep your eyes and ears open, as this will be here before you know it!</string>
+    <string name="character_140">You will all see a thread pop up here soon regarding details of how we plan to tackle the 30 man raid. In this thread, we will have a seri</string>
+    <string name="tags">#test #tags #longtagtest #evenlongertagtesttest</string>
 </resources>

@@ -36,15 +36,12 @@ public class DummyAdapter<T> extends ArrayAdapter<T> {
                 v.findViewById(R.id.message_preview).setVisibility(View.VISIBLE);
                 break;
             case 3:
-                v.findViewById(R.id.case_3).setVisibility(View.VISIBLE);
-                break;
-            case 4:
                 v.findViewById(R.id.thread_post).setVisibility(View.VISIBLE);
                 break;
-            case 5:
+            case 4:
                 v.findViewById(R.id.thread_original_post).setVisibility(View.VISIBLE);
                 break;
-            case 6:
+            case 5:
                 v.findViewById(R.id.thread_preview).setVisibility(View.VISIBLE);
                 break;
         }
