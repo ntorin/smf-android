@@ -6,12 +6,59 @@
     <RelativeLayout
         android:id="@+id/profile_preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="case 0"/>
+        <RelativeLayout
+            android:id="@+id/profile_preview_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/profile_preview_picture"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"/>
+            <ImageView
+                android:layout_below="@id/profile_preview_picture"
+                android:id="@+id/profile_preview_badges"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_toRightOf="@id/profile_preview_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/profile_preview_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
+                android:textStyle="bold"
+                android:text="@string/screen_name"/>
+            <TextView
+                android:id="@+id/profile_preview_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_preview_name"
+                android:textSize="5pt"
+                android:text="@string/account_id"/>
+            <TextView
+                android:id="@+id/profile_preview_description"
+                android:layout_below="@id/profile_preview_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:textSize="6pt"
+                android:maxLines="@integer/thread_preview_maxlines"
+                android:text="@string/decently_long_text"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -157,8 +204,15 @@
                 android:textStyle="bold"
                 android:text="@string/thread_title"/>
             <TextView
-                android:id="@+id/preview_thread_content"
+                android:id="@+id/preview_thread_op"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/preview_thread_title"
+                android:textSize="5pt"
+                android:text="@string/screen_name"/>
+            <TextView
+                android:id="@+id/preview_thread_content"
+                android:layout_below="@id/preview_thread_op"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
