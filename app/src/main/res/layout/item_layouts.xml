@@ -8,10 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="case 0"/>
         <RelativeLayout
             android:id="@+id/profile_preview_img"
             android:layout_width="wrap_content"
@@ -35,6 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/profile_preview_name"
                 android:layout_width="match_parent"
@@ -50,26 +49,100 @@
                 android:textSize="5pt"
                 android:text="@string/account_id"/>
             <TextView
-                android:id="@+id/profile_preview_description"
+                android:id="@+id/profile_preview_account_number"
                 android:layout_below="@id/profile_preview_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
                 android:textSize="6pt"
-                android:maxLines="@integer/thread_preview_maxlines"
-                android:text="@string/decently_long_text"/>
+                android:text="@string/account_number"/>
+            <TextView
+                android:layout_below="@id/profile_preview_account_number"
+                android:id="@+id/profile_preview_post_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
+                android:text="@string/placeholder_post_count"/>
+            <TextView
+                android:layout_below="@id/profile_preview_post_count"
+                android:id="@+id/profile_preview_followers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
+                android:text="@string/placeholder_followers"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/group_preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone">
-        <TextView
+        <RelativeLayout
+            android:id="@+id/group_preview_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/group_preview_picture"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"/>
+            <ImageView
+                android:layout_below="@id/group_preview_picture"
+                android:id="@+id/group_preview_badges"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_toRightOf="@id/group_preview_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="case 1"/>
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/group_preview_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textStyle="bold"
+                    android:text="@string/placeholder_group_name"/>
+                <TextView
+                    android:id="@+id/group_preview_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/group_preview_name"
+                    android:textSize="5pt"
+                    android:text="@string/placeholder_group_id"/>
+                <TextView
+                    android:id="@+id/group_preview_short_description"
+                    android:layout_below="@id/group_preview_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:textStyle="italic"
+                    android:text="@string/group_short_description"/>
+                <TextView
+                    android:layout_below="@id/group_preview_short_description"
+                    android:id="@+id/group_preview_post_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:text="@string/placeholder_post_count"/>
+                <TextView
+                    android:layout_below="@id/group_preview_post_count"
+                    android:id="@+id/group_preview_followers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:text="@string/placeholder_group_members"/>
+            </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -77,21 +150,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
-        <TextView
+        <RelativeLayout
+            android:id="@+id/message_preview_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/message_preview_picture"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"/>
+            <ImageView
+                android:layout_below="@id/message_preview_picture"
+                android:id="@+id/message_preview_badges"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/message_preview_content"
+            android:layout_toRightOf="@id/message_preview_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="case 2"/>
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/message_preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
+                android:textStyle="bold"
+                android:text="@string/message_title"/>
+            <TextView
+                android:id="@+id/message_preview_sender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/message_preview_title"
+                android:textSize="5pt"
+                android:text="@string/message_user_names"/>
+                <TextView
+                    android:id="@+id/message_preview_message"
+                    android:layout_below="@id/message_preview_sender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6pt"
+                    android:maxLines="@integer/message_preview_maxlines"
+                    android:text="@string/decently_long_text"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/thread_post"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone">
-        <TextView
+        <RelativeLayout
+            android:id="@+id/replier_info"
+            android:layout_width="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/replier_screen_name"
+                android:text="@string/screen_name"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_below="@id/replier_screen_name"
+                android:id="@+id/replier_picture"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"/>
+            <ImageView
+                android:id="@+id/replier_badges"
+                android:layout_below="@id/replier_picture"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_toRightOf="@id/replier_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="case 4"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingRight="15dp">
+            <TextView
+                android:id="@+id/replier_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:textSize="6pt"
+                android:text="@string/decently_long_text"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout

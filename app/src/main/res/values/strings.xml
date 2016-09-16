@@ -50,4 +50,12 @@
     <string name="character_140">You will all see a thread pop up here soon regarding details of how we plan to tackle the 30 man raid. In this thread, we will have a seri</string>
     <string name="tags">#test #tags #longtagtest #evenlongertagtesttest</string>
     <string name="account_id">accountid</string>
+    <string name="account_number">User #0</string>
+    <string name="placeholder_post_count">2194 Posts</string>
+    <string name="placeholder_followers">659 Followers</string>
+    <string name="placeholder_group_name">Group Screen Name</string>
+    <string name="placeholder_group_id">groupid</string>
+    <string name="placeholder_group_members">36881 Members</string>
+    <string name="message_user_names">Screen Name (accountid)</string>
+    <string name="message_title">Message Title</string>
 </resources>
