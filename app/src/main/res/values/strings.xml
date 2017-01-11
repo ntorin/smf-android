@@ -62,4 +62,9 @@
     <string name="btn_anonymous_mode">Anonymous Mode</string>
     <string name="btn_sign_in">Sign In</string>
     <string name="btn_register">Register</string>
+    <string name="action_edit_profile">Edit Profile</string>
+    <string name="edit_short_description">Short Description (max. 140 characters)</string>
+    <string name="edit_account_id">Account ID (unique; A–Z and 0–9 only)</string>
+    <string name="edit_wallpaper">Edit Wallpaper</string>
+    <string name="action_edit_profile_complete">Save Changes</string>
 </resources>

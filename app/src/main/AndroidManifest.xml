@@ -15,14 +15,17 @@
             android:name=".Home"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SignIn"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".SignIn"
+            android:label="@string/title_activity_sign_in" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".personal.EditProfile"></activity>
     </application>
 
 </manifest>
