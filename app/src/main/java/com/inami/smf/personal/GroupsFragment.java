@@ -66,7 +66,7 @@ public class GroupsFragment extends Fragment {
             }
         });
         mListView = (ListView) v.findViewById(R.id.groups_list);
-        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 

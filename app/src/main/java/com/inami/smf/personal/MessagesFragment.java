@@ -56,7 +56,7 @@ public class MessagesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_messages, container, false);
         mListView = (ListView) v.findViewById(R.id.messages_list);
-        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 
