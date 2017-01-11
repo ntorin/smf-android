@@ -9,7 +9,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -58,4 +58,8 @@
     <string name="placeholder_group_members">36881 Members</string>
     <string name="message_user_names">Screen Name (accountid)</string>
     <string name="message_title">Message Title</string>
+    <string name="auth_failed">Authentication failed.</string>
+    <string name="btn_anonymous_mode">Anonymous Mode</string>
+    <string name="btn_sign_in">Sign In</string>
+    <string name="btn_register">Register</string>
 </resources>
