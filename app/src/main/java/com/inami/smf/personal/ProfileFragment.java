@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
 
@@ -28,6 +35,11 @@ public class ProfileFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private ListView mListView;
+
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseRef;
+    private String Uid;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -52,6 +64,24 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseRef = FirebaseAuth.getInstance();
+        Uid = firebaseRef.getCurrentUser().getUid();
+
+        mDatabase.child("users").child(Uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d()
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         setHasOptionsMenu(true);
     }
 

@@ -67,4 +67,5 @@
     <string name="edit_account_id">Account ID (unique; A–Z and 0–9 only)</string>
     <string name="edit_wallpaper">Edit Wallpaper</string>
     <string name="action_edit_profile_complete">Save Changes</string>
+    <string name="invalid_login">Incorrect email or password. Please try again.</string>
 </resources>

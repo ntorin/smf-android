@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.inami.smf.R;
 import com.inami.smf.utils.PlaceholderFragment;
 
@@ -31,6 +33,10 @@ public class PersonalFragment extends Fragment {
     private LayoutInflater mInflater;
     private ViewPager mViewPager;
     private View mView;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseRef;
+    private String Uid;
 
     public PersonalFragment() {
         // Required empty public constructor
