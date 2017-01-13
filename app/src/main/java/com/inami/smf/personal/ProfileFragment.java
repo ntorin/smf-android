@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +42,10 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth firebaseRef;
     private String Uid;
 
+    private TextView mScreenName;
+    private TextView mAccountID;
+    private TextView mShortDescription;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -65,22 +70,9 @@ public class ProfileFragment extends Fragment {
         if (getArguments() != null) {
         }
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-
-        mDatabase.child("users").child(Uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d()
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         setHasOptionsMenu(true);
     }
@@ -90,13 +82,16 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        initProfileValues(v);
+
         mListView = (ListView) v.findViewById(R.id.profile_activity_list);
         mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_profile, menu);
 
     }
@@ -107,7 +102,7 @@ public class ProfileFragment extends Fragment {
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.action_edit_profile:
                 i = new Intent(getContext(), EditProfile.class);
                 startActivity(i);
@@ -116,6 +111,49 @@ public class ProfileFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void initProfileValues(View v) {
+        mScreenName = (TextView) v.findViewById(R.id.user_screen_name);
+        mAccountID = (TextView) v.findViewById(R.id.user_account_id);
+        mShortDescription = (TextView) v.findViewById(R.id.user_short_description);
+
+
+        mDatabase.child("users").child(Uid).child("screenname").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mScreenName.setText((CharSequence) dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(Uid).child("accountid").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mAccountID.setText("(" + dataSnapshot.getValue() + ")");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(Uid).child("shortdescription").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mShortDescription.setText((CharSequence) dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

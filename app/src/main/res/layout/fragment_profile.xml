@@ -16,25 +16,44 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
-                android:id="@+id/user_screen_name"
+                android:id="@+id/user_account_id"
                 android:layout_width="match_parent"
-                android:layout_height="32pt"
-                android:textSize="12pt"
-                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:textSize="7pt"
                 android:gravity="center"
                 android:lines="2"
                 android:textColor="@color/white"
-                android:text="@string/user_screen_name"/>
+                android:text="@string/user_account_id"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
             <TextView
-                android:id="@+id/profile_short_description"
-                android:layout_below="@id/user_screen_name"
+                android:id="@+id/user_short_description"
                 android:layout_width="match_parent"
-                android:layout_height="16pt"
-                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:textSize="6pt"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="@string/profile_short_description"/>
+                android:text="@string/profile_short_description"
+                android:layout_below="@+id/user_account_id"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/user_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10pt"
+                android:gravity="center"
+                android:lines="2"
+                android:textColor="@color/white"
+                android:text="@string/user_screen_name"
+                android:layout_above="@+id/user_account_id"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
@@ -102,6 +121,7 @@
             </ListView>
         </RelativeLayout>
     </RelativeLayout>
+
 
 
 
