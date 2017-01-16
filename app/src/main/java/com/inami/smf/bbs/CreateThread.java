@@ -8,9 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.ResultCodes;
 
@@ -18,10 +22,19 @@ public class CreateThread extends AppCompatActivity {
 
     RelativeLayout mBaseLayout;
 
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseRef;
+    private String Uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_thread);
+
+        firebaseRef = FirebaseAuth.getInstance();
+        Uid = firebaseRef.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mBaseLayout = (RelativeLayout) findViewById(R.id.activity_create_thread);
 
         Button create = (Button) findViewById(R.id.thread_create);
@@ -34,6 +47,7 @@ public class CreateThread extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //Snackbar.make(mBaseLayout, R.string.invalid_login, Snackbar.LENGTH_LONG).show();
+                                createThread();
                                 Toast.makeText(CreateThread.this, R.string.thread_created,
                                         Toast.LENGTH_SHORT).show();
                                 setResult(ResultCodes.THREAD_CREATED);
@@ -45,4 +59,31 @@ public class CreateThread extends AppCompatActivity {
             }
         });
     }
+
+    private void createThread(){
+        EditText editThreadTitle = (EditText) findViewById(R.id.thread_title);
+        EditText editThreadContent = (EditText) findViewById(R.id.thread_content);
+        EditText editThreadTags = (EditText) findViewById(R.id.thread_tags);
+
+        String threadTitle = editThreadTitle.getText().toString();
+        String threadContent = editThreadContent.getText().toString();
+        String threadTags = editThreadTags.getText().toString();
+
+
+        DatabaseReference thread = mDatabase.child("threads").push();
+        String threadID = thread.getKey();
+
+        String[] tags = {"a", "b", "c", "d", "e"};
+
+        tags = threadTags.replace(" ", "").split(",");
+
+        mDatabase.child("threads").child(threadID).child("userid").setValue(Uid);
+        mDatabase.child("threads").child(threadID).child("threadtitle").setValue(threadTitle);
+        mDatabase.child("threads").child(threadID).child("threadcontent").setValue(threadContent);
+
+        for(String tag : tags) {
+            mDatabase.child("threads").child(threadID).child("threadtags").child(tag).setValue(tag);
+        }
+    }
 }
+    

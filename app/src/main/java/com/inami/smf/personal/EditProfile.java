@@ -35,13 +35,13 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         //mDatabase.child("users").child(Uid);
 
 
         Log.d("EditProfile:onCreate", Uid);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         ImageButton editAvatar = (ImageButton) findViewById(R.id.edit_profile_picture);
         final GridView profilePictureSelection = (GridView) findViewById(R.id.profile_picture_selection);
