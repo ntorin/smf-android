@@ -12,8 +12,17 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
+import com.inami.smf.utils.ThreadPreview;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +35,13 @@ import com.inami.smf.utils.DummyAdapter;
 public class BBSFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ListView mListView;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseRef;
+    private String Uid;
+
+    private ArrayList<ThreadPreview> mThreadList;
+    private ArrayList<String> mKeys;
 
     public BBSFragment() {
         // Required empty public constructor
@@ -43,6 +59,7 @@ public class BBSFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -50,6 +67,56 @@ public class BBSFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
+
+        firebaseRef = FirebaseAuth.getInstance();
+        Uid = firebaseRef.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("threads").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String key = dataSnapshot.getKey();
+                mKeys.add(key);
+                ThreadPreview threadPreview = new ThreadPreview();
+                mThreadList.add(threadPreview);
+
+                Log.d("onChildAdded", "" + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String key = dataSnapshot.getKey();
+                int i = mKeys.indexOf(key);
+                ThreadPreview threadPreview = new ThreadPreview();
+                mThreadList.set(i, threadPreview);
+
+                Log.d("onChildChanged", "" + dataSnapshot.getValue());
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+                int i = mKeys.indexOf(key);
+                mThreadList.remove(i);
+                
+                Log.d("onChildRemoved", "" + dataSnapshot.getValue());
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                Log.d("onChildMoved", "" + dataSnapshot.getValue());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
@@ -68,6 +135,7 @@ public class BBSFragment extends Fragment {
         });
         mListView = (ListView) v.findViewById(R.id.bbs_list);
         //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+
         return v;
     }
 

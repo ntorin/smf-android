@@ -79,11 +79,15 @@ public class CreateThread extends AppCompatActivity {
 
         mDatabase.child("threads").child(threadID).child("userid").setValue(Uid);
         mDatabase.child("threads").child(threadID).child("threadtitle").setValue(threadTitle);
-        mDatabase.child("threads").child(threadID).child("threadcontent").setValue(threadContent);
+
 
         for(String tag : tags) {
             mDatabase.child("threads").child(threadID).child("threadtags").child(tag).setValue(tag);
         }
+
+        DatabaseReference post = mDatabase.child("posts").child(threadID).push();
+        String postID = post.getKey();
+        mDatabase.child("posts").child(threadID).child(postID).child("userid").setValue(Uid);
+        mDatabase.child("posts").child(threadID).child(postID).child("content").setValue(threadContent);
     }
 }
-    
