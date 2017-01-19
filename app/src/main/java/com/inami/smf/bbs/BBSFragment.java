@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
 import com.inami.smf.utils.ItemAdapter;
@@ -84,7 +85,9 @@ public class BBSFragment extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
                 mKeys.add(key);
-                ThreadPreview threadPreview = new ThreadPreview();
+
+                ThreadPreview threadPreview = createThreadPreview(dataSnapshot);
+                //ThreadPreview threadPreview = new ThreadPreview();
                 mThreadList.add(threadPreview);
                 mItemAdapter.notifyDataSetChanged();
 
@@ -95,8 +98,10 @@ public class BBSFragment extends Fragment {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
                 int i = mKeys.indexOf(key);
+                //ThreadPreview threadPreview = createThreadPreview(dataSnapshot);
                 ThreadPreview threadPreview = new ThreadPreview();
                 mThreadList.set(i, threadPreview);
+                mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildChanged", "" + dataSnapshot.getValue());
 
@@ -107,6 +112,7 @@ public class BBSFragment extends Fragment {
                 String key = dataSnapshot.getKey();
                 int i = mKeys.indexOf(key);
                 mThreadList.remove(i);
+                mItemAdapter.notifyDataSetChanged();
                 
                 Log.d("onChildRemoved", "" + dataSnapshot.getValue());
 
@@ -124,6 +130,28 @@ public class BBSFragment extends Fragment {
             }
         });
 
+    }
+
+    private ThreadPreview createThreadPreview(DataSnapshot dataSnapshot) {
+        ThreadPreview tp;
+        String threadID = dataSnapshot.getKey();
+        String threadTitle = (String) dataSnapshot.child("threadtitle").getValue();
+        String opID = (String) dataSnapshot.child("userid").getValue();
+        long unixStamp = (long) dataSnapshot.child("unixstamp").getValue();
+        ArrayList<String> tags = new ArrayList<>();
+        for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
+            tags.add((String) d.getValue());
+        }
+        final String[] opScreenName = new String[1];
+        opScreenName[0] = ";;";
+
+
+        final String[] threadContent = new String[1];
+        threadContent[0] = "::";
+
+
+        tp = new ThreadPreview(threadTitle, tags.toArray(new String[tags.size()]), opID, threadID, unixStamp);
+        return tp;
     }
 
     @Override

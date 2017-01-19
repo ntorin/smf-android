@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.ResultCodes;
 
+import java.util.Date;
+
 public class CreateThread extends AppCompatActivity {
 
     RelativeLayout mBaseLayout;
@@ -89,5 +91,8 @@ public class CreateThread extends AppCompatActivity {
         String postID = post.getKey();
         mDatabase.child("posts").child(threadID).child(postID).child("userid").setValue(Uid);
         mDatabase.child("posts").child(threadID).child(postID).child("content").setValue(threadContent);
+        int timestamp = (int) (System.currentTimeMillis()/1000);
+        mDatabase.child("posts").child(threadID).child(postID).child("unixstamp").setValue(timestamp);
+        mDatabase.child("threads").child(threadID).child("unixstamp").setValue(timestamp);
     }
 }
