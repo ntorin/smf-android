@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
+import com.inami.smf.utils.ItemAdapter;
 import com.inami.smf.utils.ThreadPreview;
 
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public class BBSFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+
+    private ItemAdapter mItemAdapter;
 
     private ArrayList<ThreadPreview> mThreadList;
     private ArrayList<String> mKeys;
@@ -68,6 +71,9 @@ public class BBSFragment extends Fragment {
         if (getArguments() != null) {
         }
 
+        mThreadList = new ArrayList<>();
+        mKeys = new ArrayList<>();
+
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
@@ -80,6 +86,7 @@ public class BBSFragment extends Fragment {
                 mKeys.add(key);
                 ThreadPreview threadPreview = new ThreadPreview();
                 mThreadList.add(threadPreview);
+                mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildAdded", "" + dataSnapshot.getValue());
             }
@@ -134,7 +141,8 @@ public class BBSFragment extends Fragment {
             }
         });
         mListView = (ListView) v.findViewById(R.id.bbs_list);
-        //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mThreadList, inflater, 5);
+        mListView.setAdapter(mItemAdapter);
 
         return v;
     }
