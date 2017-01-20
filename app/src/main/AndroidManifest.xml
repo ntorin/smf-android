@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".personal.EditProfile" />
-        <activity android:name=".bbs.CreateThread"></activity>
+        <activity android:name=".bbs.CreateThread" />
+        <activity android:name=".bbs.ShowThread"></activity>
     </application>
 
 </manifest>

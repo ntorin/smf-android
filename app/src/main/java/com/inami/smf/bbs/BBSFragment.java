@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
 import com.inami.smf.utils.ItemAdapter;
+import com.inami.smf.utils.ItemTypes;
 import com.inami.smf.utils.ThreadPreview;
 
 import java.util.ArrayList;
@@ -87,7 +89,6 @@ public class BBSFragment extends Fragment {
                 mKeys.add(key);
 
                 ThreadPreview threadPreview = createThreadPreview(dataSnapshot);
-                //ThreadPreview threadPreview = new ThreadPreview();
                 mThreadList.add(threadPreview);
                 mItemAdapter.notifyDataSetChanged();
 
@@ -98,7 +99,6 @@ public class BBSFragment extends Fragment {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
                 int i = mKeys.indexOf(key);
-                //ThreadPreview threadPreview = createThreadPreview(dataSnapshot);
                 ThreadPreview threadPreview = new ThreadPreview();
                 mThreadList.set(i, threadPreview);
                 mItemAdapter.notifyDataSetChanged();
@@ -142,13 +142,6 @@ public class BBSFragment extends Fragment {
         for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
             tags.add((String) d.getValue());
         }
-        final String[] opScreenName = new String[1];
-        opScreenName[0] = ";;";
-
-
-        final String[] threadContent = new String[1];
-        threadContent[0] = "::";
-
 
         tp = new ThreadPreview(threadTitle, tags.toArray(new String[tags.size()]), opID, threadID, unixStamp);
         return tp;
@@ -163,14 +156,28 @@ public class BBSFragment extends Fragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mListener.onThreadFocus();
                 Intent i = new Intent(getContext(), CreateThread.class);
                 startActivity(i);
             }
         });
         mListView = (ListView) v.findViewById(R.id.bbs_list);
-        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mThreadList, inflater, 5);
+        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mThreadList, inflater, ItemTypes.THREAD_PREVIEW);
         mListView.setAdapter(mItemAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ThreadPreview tp = (ThreadPreview) parent.getItemAtPosition(position);
+                Intent i = new Intent(BBSFragment.this.getContext(), ShowThread.class);
+                Bundle b = new Bundle();
+                b.putString("threadid", tp.getThreadID());
+                b.putString("threadtitle", tp.getThreadTitle());
+                b.putStringArray("threadtags", tp.getThreadTags());
+                b.putString("opid", tp.getOpID());
+                b.putLong("unixstamp", tp.getUnixStamp());
+                i.putExtras(b);
+                startActivity(i);
+            }
+        });
 
         return v;
     }

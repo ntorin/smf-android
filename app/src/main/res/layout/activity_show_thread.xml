@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_show_thread"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.inami.smf.bbs.ShowThread">
+    <ListView
+        android:id="@+id/showthread_replies"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="10"></ListView>
+    <Button
+        android:id="@+id/showthread_btn_reply"
+        android:layout_below="@id/showthread_replies"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/showthread_btn_reply"
+        android:layout_weight="90"/>
+</LinearLayout>

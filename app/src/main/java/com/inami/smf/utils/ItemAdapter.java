@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,7 +78,7 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
 
         final TextView screenName = (TextView) v.findViewById(R.id.preview_thread_op);
 
-        mDatabase.child("users").child(tp.opID).child("screenname").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(tp.getOpID()).child("screenname").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 screenName.setText((String) dataSnapshot.getValue());
@@ -88,26 +91,31 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
             }
         });
 
-        screenName.setText(tp.opScreenName);
-
         TextView threadTitle = (TextView) v.findViewById(R.id.preview_thread_title);
-        threadTitle.setText(tp.threadTitle);
+        threadTitle.setText(tp.getThreadTitle());
 
         final TextView threadContent = (TextView) v.findViewById(R.id.preview_thread_content);
 
-        /* mDatabase.child("posts").child(tp.threadID).orderByChild("unixstamp").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+         mDatabase.child("posts").child(tp.getThreadID()).orderByChild("unixstamp").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                threadContent.setText((String) dataSnapshot.child("content").getValue());
-                Log.d("post", "" + dataSnapshot.getValue());
+                for(DataSnapshot d : dataSnapshot.getChildren()){
+                    threadContent.setText((String) d.child("content").getValue());
+                    Log.d("post", "" + d.child("content").getValue());
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        }); */
+        });
 
-        //threadContent.setText(tp.threadContent);
+        LinearLayout tagList = (LinearLayout) v.findViewById(R.id.preview_thread_tags);
+        for (String tag : tp.getThreadTags()){
+            TextView textView = new TextView(getContext());
+            textView.setText("#" + tag);
+            tagList.addView(textView);
+        }
     }
 }

@@ -76,4 +76,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="thread_created">Thread created.</string>
+    <string name="showthread_btn_reply">Reply</string>
 </resources>

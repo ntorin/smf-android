@@ -5,21 +5,40 @@ package com.inami.smf.utils;
  */
 
 public class ThreadPreview {
-    String threadTitle;
-    String threadContent;
-    String[] threadTags;
-    String opID;
-    String threadID;
-    String opScreenName;
-    long unixStamp;
+    private String threadTitle;
+    private String[] threadTags;
+    private String opID;
+    private String threadID;
+    private long unixStamp;
+
+
+
+    public String[] getThreadTags() {
+        return threadTags;
+    }
+
+    public String getOpID() {
+        return opID;
+    }
+
+    public String getThreadID() {
+        return threadID;
+    }
+
+    public long getUnixStamp() {
+        return unixStamp;
+    }
+
+    public String getThreadTitle() {
+
+        return threadTitle;
+    }
 
     public ThreadPreview(String threadTitle, String[] threadTags, String opID, String threadID, long unixStamp) {
         this.threadTitle = threadTitle;
-        this.threadContent = threadContent;
         this.threadTags = threadTags;
         this.opID = opID;
         this.threadID = threadID;
-        this.opScreenName = opScreenName;
         this.unixStamp = unixStamp;
     }
 

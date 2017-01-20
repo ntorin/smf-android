@@ -375,12 +375,14 @@
                 android:textSize="6pt"
                 android:maxLines="@integer/thread_preview_maxlines"
                 android:text="@string/decently_long_text"/>
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:id="@+id/preview_thread_tags"
                 android:layout_below="@id/preview_thread_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tags"/>
+                android:layout_height="match_parent">
+            </LinearLayout>
+
         </RelativeLayout>
     </RelativeLayout>
 
