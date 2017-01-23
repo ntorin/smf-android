@@ -49,26 +49,49 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
         View v = mInflater.inflate(R.layout.item_layouts, parent, false);
         T item = getItem(position);
         switch (mType) {
-            case 0:
+            case ItemTypes.PROFILE_PREVIEW:
                 v.findViewById(R.id.profile_preview).setVisibility(View.VISIBLE);
                 break;
-            case 1:
+            case ItemTypes.GROUP_PREVIEW:
                 v.findViewById(R.id.group_preview).setVisibility(View.VISIBLE);
                 break;
-            case 2:
+            case ItemTypes.MESSAGE_PREVIEW:
                 v.findViewById(R.id.message_preview).setVisibility(View.VISIBLE);
                 break;
-            case 3:
-                v.findViewById(R.id.thread_post).setVisibility(View.VISIBLE);
+            case ItemTypes.THREAD_POST:
+                setupPost(v, item);
                 break;
-            case 4:
+            case ItemTypes.THREAD_ORIGINAL_POST:
                 v.findViewById(R.id.thread_original_post).setVisibility(View.VISIBLE);
                 break;
-            case 5:
+            case ItemTypes.THREAD_PREVIEW:
                 setupThreadPreview(v, item);
                 break;
         }
         return v;
+    }
+
+    private void setupPost(View v, T item) {
+        v.findViewById(R.id.thread_post).setVisibility(View.VISIBLE);
+        Post p = (Post) item;
+
+        final TextView screenName = (TextView) v.findViewById(R.id.replier_screen_name);
+
+        mDatabase.child("users").child(p.getUserID()).child("screenname").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                screenName.setText((String) dataSnapshot.getValue());
+                Log.d("screenName", "" + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        TextView postContent = (TextView) v.findViewById(R.id.replier_content);
+        postContent.setText(p.getPostContent());
     }
 
     private void setupThreadPreview(View v, T item) {

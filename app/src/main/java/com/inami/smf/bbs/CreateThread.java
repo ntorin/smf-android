@@ -75,9 +75,7 @@ public class CreateThread extends AppCompatActivity {
         DatabaseReference thread = mDatabase.child("threads").push();
         String threadID = thread.getKey();
 
-        String[] tags = {"a", "b", "c", "d", "e"};
-
-        tags = threadTags.replace(" ", "").split(",");
+        String[] tags = threadTags.replace(" ", "").split(",");
 
         mDatabase.child("threads").child(threadID).child("userid").setValue(Uid);
         mDatabase.child("threads").child(threadID).child("threadtitle").setValue(threadTitle);

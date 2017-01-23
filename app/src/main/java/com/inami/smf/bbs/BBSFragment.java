@@ -88,7 +88,7 @@ public class BBSFragment extends Fragment {
                 String key = dataSnapshot.getKey();
                 mKeys.add(key);
 
-                ThreadPreview threadPreview = createThreadPreview(dataSnapshot);
+                ThreadPreview threadPreview = ThreadPreview.createThreadPreview(dataSnapshot);
                 mThreadList.add(threadPreview);
                 mItemAdapter.notifyDataSetChanged();
 
@@ -130,21 +130,6 @@ public class BBSFragment extends Fragment {
             }
         });
 
-    }
-
-    private ThreadPreview createThreadPreview(DataSnapshot dataSnapshot) {
-        ThreadPreview tp;
-        String threadID = dataSnapshot.getKey();
-        String threadTitle = (String) dataSnapshot.child("threadtitle").getValue();
-        String opID = (String) dataSnapshot.child("userid").getValue();
-        long unixStamp = (long) dataSnapshot.child("unixstamp").getValue();
-        ArrayList<String> tags = new ArrayList<>();
-        for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
-            tags.add((String) d.getValue());
-        }
-
-        tp = new ThreadPreview(threadTitle, tags.toArray(new String[tags.size()]), opID, threadID, unixStamp);
-        return tp;
     }
 
     @Override

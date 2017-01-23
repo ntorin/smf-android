@@ -77,4 +77,8 @@
     <string name="no">No</string>
     <string name="thread_created">Thread created.</string>
     <string name="showthread_btn_reply">Reply</string>
+    <string name="reply_create">Reply to Thread</string>
+    <string name="reply_content">Your message…</string>
+    <string name="confirm_create_post">Are you sure you would like to post this message?</string>
+    <string name="reply_created">Message posted.</string>
 </resources>

@@ -1,5 +1,9 @@
 package com.inami.smf.utils;
 
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
+
 /**
  * Created by Ntori on 1/17/2017.
  */
@@ -44,5 +48,20 @@ public class ThreadPreview {
 
     public ThreadPreview() {
 
+    }
+
+    public static ThreadPreview createThreadPreview(DataSnapshot dataSnapshot) {
+        ThreadPreview tp;
+        String threadID = dataSnapshot.getKey();
+        String threadTitle = (String) dataSnapshot.child("threadtitle").getValue();
+        String opID = (String) dataSnapshot.child("userid").getValue();
+        long unixStamp = (long) dataSnapshot.child("unixstamp").getValue();
+        ArrayList<String> tags = new ArrayList<>();
+        for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
+            tags.add((String) d.getValue());
+        }
+
+        tp = new ThreadPreview(threadTitle, tags.toArray(new String[tags.size()]), opID, threadID, unixStamp);
+        return tp;
     }
 }

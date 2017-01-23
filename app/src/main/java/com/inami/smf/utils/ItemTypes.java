@@ -5,10 +5,10 @@ package com.inami.smf.utils;
  */
 
 public class ItemTypes {
-    public static int PROFILE_PREVIEW = 0;
-    public static int GROUP_PREVIEW = 1;
-    public static int MESSAGE_PREVIEW = 2;
-    public static int THREAD_POST = 3;
-    public static int THREAD_ORIGINAL_POST = 4;
-    public static int THREAD_PREVIEW = 5;
+    public static final int PROFILE_PREVIEW = 0;
+    public static final int GROUP_PREVIEW = 1;
+    public static final int MESSAGE_PREVIEW = 2;
+    public static final int THREAD_POST = 3;
+    public static final int THREAD_ORIGINAL_POST = 4;
+    public static final int THREAD_PREVIEW = 5;
 }
