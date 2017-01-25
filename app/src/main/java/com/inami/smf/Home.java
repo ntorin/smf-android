@@ -1,6 +1,5 @@
 package com.inami.smf;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,12 +18,12 @@ import com.inami.smf.account.AccountSettingsFragment;
 import com.inami.smf.bbs.BBSFragment;
 import com.inami.smf.bbs.ThreadFragment;
 import com.inami.smf.notifications.NotificationsFragment;
-import com.inami.smf.personal.FeedFragment;
-import com.inami.smf.personal.GroupsFragment;
-import com.inami.smf.personal.MessagesFragment;
-import com.inami.smf.personal.PersonalFragment;
-import com.inami.smf.personal.ProfileFragment;
-import com.inami.smf.personal.SingleGroupFragment;
+import com.inami.smf.personal.feed.FeedFragment;
+import com.inami.smf.personal.groups.GroupsFragment;
+import com.inami.smf.personal.messages.MessagesFragment;
+import com.inami.smf.personal.profile.PersonalFragment;
+import com.inami.smf.personal.profile.ProfileFragment;
+import com.inami.smf.personal.groups.SingleGroupFragment;
 import com.inami.smf.usersearch.UserSearchFragment;
 
 public class Home extends AppCompatActivity

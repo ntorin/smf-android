@@ -1,14 +1,12 @@
-package com.inami.smf.personal;
+package com.inami.smf.personal.groups;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.inami.smf.R;
@@ -17,17 +15,16 @@ import com.inami.smf.utils.DummyAdapter;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GroupsFragment.OnFragmentInteractionListener} interface
+ * {@link SingleGroupFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GroupsFragment#newInstance} factory method to
+ * Use the {@link SingleGroupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupsFragment extends Fragment {
-
+public class SingleGroupFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ListView mListView;
 
-    public GroupsFragment() {
+    public SingleGroupFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +32,11 @@ public class GroupsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment GroupsFragment.
+     * @return A new instance of fragment SingleGroupFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GroupsFragment newInstance() {
-        GroupsFragment fragment = new GroupsFragment();
+    public static SingleGroupFragment newInstance() {
+        SingleGroupFragment fragment = new SingleGroupFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -50,23 +47,15 @@ public class GroupsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_group, container, false);
-        ImageButton b = (ImageButton) v.findViewById(R.id.btn_add_group);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onSingleGroupFocus();
-            }
-        });
-        mListView = (ListView) v.findViewById(R.id.groups_list);
-        //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        View v = inflater.inflate(R.layout.fragment_single_group, container, false);
+        mListView = (ListView) v.findViewById(R.id.group_activity_list);
+        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 
@@ -107,7 +96,5 @@ public class GroupsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-
-        void onSingleGroupFocus();
     }
 }

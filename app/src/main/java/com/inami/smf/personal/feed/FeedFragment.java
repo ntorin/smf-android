@@ -1,4 +1,4 @@
-package com.inami.smf.personal;
+package com.inami.smf.personal.feed;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,17 +15,17 @@ import com.inami.smf.utils.DummyAdapter;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MessagesFragment.OnFragmentInteractionListener} interface
+ * {@link FeedFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MessagesFragment#newInstance} factory method to
+ * Use the {@link FeedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MessagesFragment extends Fragment {
+public class FeedFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private ListView mListView;
 
-    public MessagesFragment() {
+    public FeedFragment() {
         // Required empty public constructor
     }
 
@@ -33,11 +33,11 @@ public class MessagesFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment MessagesFragment.
+     * @return A new instance of fragment FeedFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MessagesFragment newInstance() {
-        MessagesFragment fragment = new MessagesFragment();
+    public static FeedFragment newInstance() {
+        FeedFragment fragment = new FeedFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -53,10 +53,10 @@ public class MessagesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_messages, container, false);
-        mListView = (ListView) v.findViewById(R.id.messages_list);
-        //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+
+        View v = inflater.inflate(R.layout.fragment_feed, container, false);
+        mListView = (ListView) v.findViewById(R.id.feed_list);
+        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
         return v;
     }
 

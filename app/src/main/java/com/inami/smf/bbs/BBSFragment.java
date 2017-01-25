@@ -88,9 +88,14 @@ public class BBSFragment extends Fragment {
                 String key = dataSnapshot.getKey();
                 mKeys.add(key);
 
-                ThreadPreview threadPreview = ThreadPreview.createThreadPreview(dataSnapshot);
+                ThreadPreview threadPreview;
+                if(dataSnapshot.child("unixstamp").getValue() != null) {
+                    threadPreview = ThreadPreview.createThreadPreview(dataSnapshot);
+                }else{
+                    threadPreview = new ThreadPreview();
+                }
                 mThreadList.add(threadPreview);
-                //mItemAdapter.notifyDataSetChanged();
+                mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildAdded", "" + dataSnapshot.getValue());
             }

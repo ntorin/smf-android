@@ -67,7 +67,8 @@ public class ShowThread extends AppCompatActivity {
 
                 Post post = Post.createPost(dataSnapshot);
                 mPostList.add(post);
-                //mItemAdapter.notifyDataSetChanged();
+
+                mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildAdded", "" + dataSnapshot.getValue());
             }

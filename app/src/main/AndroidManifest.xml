@@ -24,10 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".personal.EditProfile" />
+        <activity android:name=".personal.profile.EditProfile" />
         <activity android:name=".bbs.CreateThread" />
         <activity android:name=".bbs.ShowThread" />
-        <activity android:name=".bbs.ReplyThread"></activity>
+        <activity android:name=".bbs.ReplyThread" />
+        <activity android:name=".personal.groups.CreateGroup" />
+        <activity android:name=".personal.groups.EditGroup" />
+        <activity android:name=".personal.messages.CreateMessage" />
+        <activity android:name=".personal.messages.ShowMessage"></activity>
     </application>
 
 </manifest>

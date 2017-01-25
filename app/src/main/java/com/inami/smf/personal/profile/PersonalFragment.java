@@ -1,4 +1,4 @@
-package com.inami.smf.personal;
+package com.inami.smf.personal.profile;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.inami.smf.R;
+import com.inami.smf.personal.feed.FeedFragment;
+import com.inami.smf.personal.messages.MessagesFragment;
+import com.inami.smf.personal.groups.GroupsFragment;
 import com.inami.smf.utils.PlaceholderFragment;
 
 /**

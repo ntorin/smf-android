@@ -55,7 +55,10 @@ public class ThreadPreview {
         String threadID = dataSnapshot.getKey();
         String threadTitle = (String) dataSnapshot.child("threadtitle").getValue();
         String opID = (String) dataSnapshot.child("userid").getValue();
-        long unixStamp = (long) dataSnapshot.child("unixstamp").getValue();
+        long unixStamp = 0;
+        if(dataSnapshot.child("unixstamp").getValue() != null) {
+            unixStamp = (long) dataSnapshot.child("unixstamp").getValue();
+        }
         ArrayList<String> tags = new ArrayList<>();
         for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
             tags.add((String) d.getValue());

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.inami.smf.personal.ProfileFragment">
+    tools:context="com.inami.smf.personal.profile.ProfileFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/profile_name_description_toolbar"
