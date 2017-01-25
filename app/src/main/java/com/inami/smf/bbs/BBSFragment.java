@@ -90,7 +90,7 @@ public class BBSFragment extends Fragment {
 
                 ThreadPreview threadPreview = ThreadPreview.createThreadPreview(dataSnapshot);
                 mThreadList.add(threadPreview);
-                mItemAdapter.notifyDataSetChanged();
+                //mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildAdded", "" + dataSnapshot.getValue());
             }
@@ -99,7 +99,7 @@ public class BBSFragment extends Fragment {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
                 int i = mKeys.indexOf(key);
-                ThreadPreview threadPreview = new ThreadPreview();
+                ThreadPreview threadPreview = ThreadPreview.createThreadPreview(dataSnapshot);
                 mThreadList.set(i, threadPreview);
                 mItemAdapter.notifyDataSetChanged();
 
