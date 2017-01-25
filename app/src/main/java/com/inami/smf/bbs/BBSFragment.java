@@ -96,7 +96,7 @@ public class BBSFragment extends Fragment {
                 }
                 mThreadList.add(threadPreview);
                 mItemAdapter.notifyDataSetChanged();
-
+ 
                 Log.d("onChildAdded", "" + dataSnapshot.getValue());
             }
 
