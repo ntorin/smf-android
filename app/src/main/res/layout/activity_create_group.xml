@@ -9,5 +9,46 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.inami.smf.personal.groups.CreateGroup">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/group_scrollview"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/group_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/group_name" />
+
+            <EditText
+                android:id="@+id/group_screen_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/group_name"
+                android:hint="@string/group_id" />
+
+            <EditText
+                android:id="@+id/group_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/group_screen_id"
+                android:hint="@string/thread_tags" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/group_create"
+        android:layout_width="match_parent"
+        android:text="@string/group_create"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
