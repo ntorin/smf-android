@@ -77,6 +77,9 @@ public class GroupsFragment extends Fragment {
         Uid = firebaseRef.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        mGroupList = new ArrayList<>();
+        mKeys = new ArrayList<>();
+
         mDatabase.child("groups").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -110,7 +113,7 @@ public class GroupsFragment extends Fragment {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String key = dataSnapshot.getKey();
                 int i = mKeys.indexOf(key);
-                mGroupList.remove(i);
+                mGroupList.remove(i - 1);
                 mItemAdapter.notifyDataSetChanged();
 
                 Log.d("onChildRemoved", "" + dataSnapshot.getValue());
@@ -141,7 +144,6 @@ public class GroupsFragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), CreateGroup.class);
                 startActivity(i);
-                // mListener.onSingleGroupFocus();
             }
         });
         mListView = (ListView) v.findViewById(R.id.groups_list);
@@ -151,7 +153,8 @@ public class GroupsFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //// TODO: 1/26/2017  
+                //// TODO: 1/26/2017
+                mListener.onSingleGroupFocus((GroupPreview) parent.getItemAtPosition(position));
             }
         });
 
@@ -197,6 +200,6 @@ public class GroupsFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
 
-        void onSingleGroupFocus();
+        void onSingleGroupFocus(GroupPreview gp);
     }
 }

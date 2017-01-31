@@ -53,7 +53,7 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
                 v.findViewById(R.id.profile_preview).setVisibility(View.VISIBLE);
                 break;
             case ItemTypes.GROUP_PREVIEW:
-                v.findViewById(R.id.group_preview).setVisibility(View.VISIBLE);
+                setupGroupPreview(v, item);
                 break;
             case ItemTypes.MESSAGE_PREVIEW:
                 v.findViewById(R.id.message_preview).setVisibility(View.VISIBLE);
@@ -69,6 +69,23 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
                 break;
         }
         return v;
+    }
+
+    private void setupGroupPreview(View v, T item) {
+        v.findViewById(R.id.group_preview).setVisibility(View.VISIBLE);
+        GroupPreview gp = (GroupPreview) item;
+
+        TextView groupName = (TextView) v.findViewById(R.id.group_preview_name);
+        TextView groupID = (TextView) v.findViewById(R.id.group_preview_id);
+        TextView groupShortDescription = (TextView) v.findViewById(R.id.group_preview_short_description);
+        TextView groupPostCount = (TextView) v.findViewById(R.id.group_preview_post_count);
+        TextView groupMemberCount = (TextView) v.findViewById(R.id.group_preview_member_count);
+
+        groupName.setText(gp.getGroupName());
+        groupID.setText(gp.getGroupScreenID());
+        groupShortDescription.setText(gp.getGroupShortDescription());
+        groupPostCount.setText(String.valueOf(gp.getGroupPostCount()));
+        groupMemberCount.setText(String.valueOf(gp.getGroupMemberCount()));
     }
 
     private void setupPost(View v, T item) {

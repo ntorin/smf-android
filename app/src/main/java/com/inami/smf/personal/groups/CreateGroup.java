@@ -58,10 +58,12 @@ public class CreateGroup extends AppCompatActivity {
         EditText editGroupName = (EditText) findViewById(R.id.group_name);
         EditText editGroupScreenID = (EditText) findViewById(R.id.group_screen_id);
         EditText editGroupTags = (EditText) findViewById(R.id.group_tags);
+        EditText editGroupShortDescription = (EditText) findViewById(R.id.group_short_description);
 
         String groupName = editGroupName.getText().toString();
         String groupScreenID = editGroupScreenID.getText().toString();
         String groupTags = editGroupTags.getText().toString();
+        String groupShortDescription = editGroupShortDescription.getText().toString();
 
 
         DatabaseReference group = mDatabase.child("groups").push();
@@ -72,6 +74,10 @@ public class CreateGroup extends AppCompatActivity {
         mDatabase.child("groups").child(groupID).child("groupname").setValue(groupName);
         mDatabase.child("groups").child(groupID).child("groupscreenid").setValue(groupScreenID);
         mDatabase.child("groups").child(groupID).child("creatorid").setValue(Uid);
+        mDatabase.child("groups").child(groupID).child("groupshortdescription").setValue(groupShortDescription);
+        mDatabase.child("groups").child(groupID).child("membercount").setValue(0);
+        mDatabase.child("groups").child(groupID).child("postcount").setValue(0);
+
 
         for(String tag : tags){
             mDatabase.child("groups").child(groupID).child("grouptags").child(tag).setValue(tag);

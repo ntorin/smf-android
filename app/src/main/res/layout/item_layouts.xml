@@ -136,7 +136,7 @@
                     android:text="@string/placeholder_post_count"/>
                 <TextView
                     android:layout_below="@id/group_preview_post_count"
-                    android:id="@+id/group_preview_followers"
+                    android:id="@+id/group_preview_member_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="6pt"

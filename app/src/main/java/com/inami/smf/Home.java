@@ -25,6 +25,7 @@ import com.inami.smf.personal.profile.PersonalFragment;
 import com.inami.smf.personal.profile.ProfileFragment;
 import com.inami.smf.personal.groups.SingleGroupFragment;
 import com.inami.smf.usersearch.UserSearchFragment;
+import com.inami.smf.utils.GroupPreview;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -148,7 +149,7 @@ public class Home extends AppCompatActivity
     }
 
     @Override
-    public void onSingleGroupFocus() {
+    public void onSingleGroupFocus(GroupPreview gp) {
         Fragment f = SingleGroupFragment.newInstance();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(null);
