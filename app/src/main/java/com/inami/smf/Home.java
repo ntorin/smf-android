@@ -151,6 +151,17 @@ public class Home extends AppCompatActivity
     @Override
     public void onSingleGroupFocus(GroupPreview gp) {
         Fragment f = SingleGroupFragment.newInstance();
+        Bundle b = new Bundle();
+        b.putString("groupid", gp.getGroupID());
+        b.putString("creatorid", gp.getCreatorID());
+        b.putString("groupname", gp.getGroupName());
+        b.putString("groupscreenid", gp.getGroupScreenID());
+        b.putString("groupshortdescription", gp.getGroupShortDescription());
+        b.putStringArray("grouptags", gp.getGroupTags());
+        b.putLong("grouppostcount", gp.getGroupPostCount());
+        b.putLong("groupmembercount", gp.getGroupMemberCount());
+        b.putLong("unixstamp", gp.getUnixStamp());
+        f.setArguments(b);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(null);
         ft.replace(R.id.fragment_container, f).commit();

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
@@ -54,9 +55,16 @@ public class SingleGroupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_single_group, container, false);
+
+        setupSingleGroup(v, inflater);
+        return v;
+    }
+
+    private void setupSingleGroup(View v, LayoutInflater inflater) {
         mListView = (ListView) v.findViewById(R.id.group_activity_list);
         mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
-        return v;
+        TextView groupScreenName = (TextView) v.findViewById(R.id.group_screen_name);
+        groupScreenName.setText(getArguments().getString("groupname"));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
