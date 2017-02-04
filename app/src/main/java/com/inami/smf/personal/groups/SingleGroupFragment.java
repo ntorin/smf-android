@@ -5,11 +5,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
 
@@ -24,6 +30,10 @@ import com.inami.smf.utils.DummyAdapter;
 public class SingleGroupFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ListView mListView;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseRef;
+    private String Uid;
 
     public SingleGroupFragment() {
         // Required empty public constructor
@@ -48,6 +58,40 @@ public class SingleGroupFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseRef = FirebaseAuth.getInstance();
+        Uid = firebaseRef.getCurrentUser().getUid();
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_single_group, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.action_join_group:
+                requestGroupInvite();
+                return true;
+            case R.id.action_leave_group:
+                leaveGroup();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void leaveGroup() {
+
+    }
+
+    private void requestGroupInvite() {
+
     }
 
     @Override
@@ -63,8 +107,15 @@ public class SingleGroupFragment extends Fragment {
     private void setupSingleGroup(View v, LayoutInflater inflater) {
         mListView = (ListView) v.findViewById(R.id.group_activity_list);
         mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+
         TextView groupScreenName = (TextView) v.findViewById(R.id.group_screen_name);
         groupScreenName.setText(getArguments().getString("groupname"));
+
+        TextView groupScreenID = (TextView) v.findViewById(R.id.group_screen_id);
+        groupScreenID.setText(getArguments().getString("groupscreenid"));
+
+        TextView groupShortDescription = (TextView) v.findViewById(R.id.group_short_description);
+        groupShortDescription.setText(getArguments().getString("groupshortdescription"));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

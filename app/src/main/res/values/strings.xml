@@ -38,7 +38,7 @@
     <string name="profile_short_description">A short description, up to 100 characters long.
         A short description, up to 100 characters long. A sh</string>
     <string name="recent_activity">Recent Activity</string>
-    <string name="group_screen_name">Group Screen Name\n(groupid)</string>
+    <string name="group_screen_name">Group Screen Name</string>
     <string name="group_short_description">A short description, up to 100 characters long.
         A short description, up to 100 characters long. A sh</string>
     <string name="connect">Connect</string>
@@ -86,4 +86,6 @@
     <string name="group_name">Group Name</string>
     <string name="confirm_create_group">Are you sure you would like to create this group?</string>
     <string name="group_created">Group created.</string>
+    <string name="action_join_group">Join Group</string>
+    <string name="action_leave_group">Leave Group</string>
 </resources>
