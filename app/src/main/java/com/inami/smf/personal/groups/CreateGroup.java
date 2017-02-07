@@ -80,7 +80,7 @@ public class CreateGroup extends AppCompatActivity {
 
 
         for(String tag : tags){
-            mDatabase.child("groups").child(groupID).child("grouptags").child(tag).setValue(tag);
+            mDatabase.child("groups").child(groupID).child("grouptags").child(tag).setValue(true);
         }
 
         int timestamp = (int) (System.currentTimeMillis()/1000);

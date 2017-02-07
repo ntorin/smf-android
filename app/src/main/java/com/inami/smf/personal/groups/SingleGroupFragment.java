@@ -1,9 +1,11 @@
 package com.inami.smf.personal.groups;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,11 +31,13 @@ import com.inami.smf.utils.DummyAdapter;
  */
 public class SingleGroupFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
-    private ListView mListView;
+    private ListView mGroupFeed;
+    private ListView mGroupMenu;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+    private String groupID;
 
     public SingleGroupFragment() {
         // Required empty public constructor
@@ -59,6 +63,7 @@ public class SingleGroupFragment extends Fragment {
         if (getArguments() != null) {
         }
 
+        groupID = getArguments().getString("groupid");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
@@ -87,11 +92,31 @@ public class SingleGroupFragment extends Fragment {
     }
 
     private void leaveGroup() {
-
+        AlertDialog dialog = new AlertDialog.Builder(getContext(), R.style.AlertDialog)
+                .setMessage(R.string.confirm_leave_group)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child("groupmembers").child(groupID).child(Uid).removeValue();
+                        mDatabase.child("usergroups").child(Uid).child(groupID).removeValue();
+                    }
+                })
+                .setNegativeButton(R.string.no, null).create();
+        dialog.show();
     }
 
     private void requestGroupInvite() {
-
+        AlertDialog dialog = new AlertDialog.Builder(getContext(), R.style.AlertDialog)
+                .setMessage(R.string.confirm_join_group)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child("groupmembers").child(groupID).child(Uid).setValue(true);
+                        mDatabase.child("usergroups").child(Uid).child(groupID).setValue(true);
+                    }
+                })
+                .setNegativeButton(R.string.no, null).create();
+        dialog.show();
     }
 
     @Override
@@ -105,8 +130,11 @@ public class SingleGroupFragment extends Fragment {
     }
 
     private void setupSingleGroup(View v, LayoutInflater inflater) {
-        mListView = (ListView) v.findViewById(R.id.group_activity_list);
-        mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        mGroupFeed = (ListView) v.findViewById(R.id.group_activity_list);
+        mGroupFeed.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+
+        mGroupMenu = (ListView) v.findViewById(R.id.group_menu_list);
+        mGroupMenu.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
 
         TextView groupScreenName = (TextView) v.findViewById(R.id.group_screen_name);
         groupScreenName.setText(getArguments().getString("groupname"));

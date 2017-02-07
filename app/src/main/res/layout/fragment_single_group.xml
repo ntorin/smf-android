@@ -38,7 +38,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
             <TextView
-                android:id="@+id/user_short_description"
+                android:id="@+id/group_short_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="6pt"
@@ -55,17 +55,9 @@
         android:id="@+id/group_picture_badges"
         android:layout_below="@id/group_name_description_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:padding="15dp">
-        <ImageButton
-            android:id="@+id/group_picture"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:background="@color/colorPrimary"/>
+        android:layout_height="115dp">
 
         <RelativeLayout
-            android:paddingLeft="25dp"
-            android:paddingStart="25dp"
             android:layout_toRightOf="@id/group_picture"
             android:id="@+id/group_badges"
             android:layout_width="match_parent"
@@ -74,30 +66,46 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorAccent" />
+                android:background="@color/colorAccent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/group_picture"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_below="@id/group_picture_badges"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp">
-        <ScrollView
-            android:id="@+id/group_stats"
-            android:layout_width="96dp"
-            android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/group_menu"
+            android:layout_width="match_parent"
+            android:layout_weight="60"
+            android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/group_menu_list"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </ScrollView>
+        </ListView>
+        </RelativeLayout>
 
 
         <RelativeLayout
-            android:paddingLeft="25dp"
-            android:paddingStart="25dp"
-            android:layout_toRightOf="@id/group_stats"
             android:layout_width="match_parent"
+            android:layout_weight="40"
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/group_recent_activity"
@@ -109,12 +117,11 @@
                 android:id="@+id/group_activity_list"
                 android:layout_below="@id/group_recent_activity"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorAccent">
+                android:layout_height="match_parent">
 
             </ListView>
         </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
 

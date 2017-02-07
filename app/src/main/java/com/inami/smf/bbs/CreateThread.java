@@ -82,7 +82,7 @@ public class CreateThread extends AppCompatActivity {
 
 
         for(String tag : tags) {
-            mDatabase.child("threads").child(threadID).child("threadtags").child(tag).setValue(tag);
+            mDatabase.child("threads").child(threadID).child("threadtags").child(tag).setValue(true);
         }
 
         DatabaseReference post = mDatabase.child("posts").child(threadID).push();
