@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.inami.smf.R;
 import com.inami.smf.utils.DummyAdapter;
+import com.inami.smf.utils.GroupMenu;
+import com.inami.smf.utils.GroupMenuAdapter;
+import com.inami.smf.utils.GroupPreview;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -134,7 +137,7 @@ public class SingleGroupFragment extends Fragment {
         mGroupFeed.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
 
         mGroupMenu = (ListView) v.findViewById(R.id.group_menu_list);
-        mGroupMenu.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
+        mGroupMenu.setAdapter(new GroupMenuAdapter(getContext(), R.layout.item_list, inflater, new GroupPreview()));
 
         TextView groupScreenName = (TextView) v.findViewById(R.id.group_screen_name);
         groupScreenName.setText(getArguments().getString("groupname"));

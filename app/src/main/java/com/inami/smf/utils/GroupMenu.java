@@ -5,4 +5,6 @@ package com.inami.smf.utils;
  */
 
 public class GroupMenu {
+    public GroupMenu() {
+    }
 }
