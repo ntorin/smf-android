@@ -148,7 +148,7 @@ public class GroupsFragment extends Fragment {
         });
         mListView = (ListView) v.findViewById(R.id.groups_list);
         //mListView.setAdapter(new DummyAdapter(getContext(), R.layout.item_list, new String[]{}, inflater));
-        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mGroupList, inflater, ItemTypes.GROUP_PREVIEW);
+        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mGroupList, inflater, ItemTypes.GROUP_PREVIEW, null);
         mListView.setAdapter(mItemAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

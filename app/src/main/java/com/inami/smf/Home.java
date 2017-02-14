@@ -167,4 +167,15 @@ public class Home extends AppCompatActivity
         ft.replace(R.id.fragment_container, f).commit();
     }
 
+
+    @Override
+    public void onGroupBBS(String groupID) {
+        Fragment f = BBSFragment.newInstance();
+        Bundle args = new Bundle();
+        args.putString("groupid", groupID);
+        f.setArguments(args);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+        ft.replace(R.id.fragment_container, f).commit();
+    }
 }

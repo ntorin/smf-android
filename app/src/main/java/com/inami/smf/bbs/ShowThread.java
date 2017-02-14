@@ -29,6 +29,7 @@ public class ShowThread extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+    private String groupID;
 
     private ItemAdapter<Post> mItemAdapter;
 
@@ -39,10 +40,18 @@ public class ShowThread extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_thread);
+        if(getIntent().getStringExtra("groupid") != null){
+            groupID = getIntent().getStringExtra("groupid");
+        }
+
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(groupID != null){
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("groups").child(groupID);
+        }else {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+        }
 
         Bundle b = getIntent().getExtras();
         String threadTitle = b.getString("threadtitle");
@@ -51,7 +60,7 @@ public class ShowThread extends AppCompatActivity {
         mPostList = new ArrayList<>();
         mKeys = new ArrayList<>();
 
-        mItemAdapter = new ItemAdapter<>(this, R.layout.item_list, mPostList, getLayoutInflater(), ItemTypes.THREAD_POST);
+        mItemAdapter = new ItemAdapter<>(this, R.layout.item_list, mPostList, getLayoutInflater(), ItemTypes.THREAD_POST, null);
 
         mListView = (ListView) findViewById(R.id.showthread_replies);
         mListView.setAdapter(mItemAdapter);
@@ -117,6 +126,9 @@ public class ShowThread extends AppCompatActivity {
                 Intent i = new Intent(ShowThread.this, ReplyThread.class);
                 Bundle b = new Bundle();
                 b.putString("threadid", threadID);
+                if(groupID != null){
+                    b.putString("groupid", groupID);
+                }
                 i.putExtras(b);
                 startActivity(i);
             }

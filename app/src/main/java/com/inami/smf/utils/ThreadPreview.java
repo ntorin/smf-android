@@ -61,7 +61,7 @@ public class ThreadPreview {
         }
         ArrayList<String> tags = new ArrayList<>();
         for( DataSnapshot d : dataSnapshot.child("threadtags").getChildren()){
-            tags.add((String) d.getValue());
+            tags.add(d.getKey());
         }
 
         tp = new ThreadPreview(threadTitle, tags.toArray(new String[tags.size()]), opID, threadID, unixStamp);

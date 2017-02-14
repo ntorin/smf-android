@@ -27,15 +27,23 @@ public class CreateThread extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+    private String groupID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_thread);
+        if(getIntent().getStringExtra("groupid") != null){
+            groupID = getIntent().getStringExtra("groupid");
+        }
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(groupID != null){
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("groups").child(groupID);
+        }else {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+        }
 
         mBaseLayout = (RelativeLayout) findViewById(R.id.activity_create_thread);
 

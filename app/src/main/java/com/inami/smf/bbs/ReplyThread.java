@@ -19,16 +19,25 @@ public class ReplyThread extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+    String groupID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply_thread);
+        if(getIntent().getStringExtra("groupid") != null){
+            groupID = getIntent().getStringExtra("groupid");
+        }
 
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(groupID != null){
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("groups").child(groupID);
+        }else {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+        }
+
 
         Button reply = (Button) findViewById(R.id.reply_create);
         reply.setOnClickListener(new View.OnClickListener() {

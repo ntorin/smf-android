@@ -43,6 +43,7 @@ public class BBSFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseRef;
     private String Uid;
+    private String groupID;
 
     private ItemAdapter mItemAdapter;
 
@@ -72,6 +73,7 @@ public class BBSFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            this.groupID = getArguments().getString("groupid");
         }
 
         mThreadList = new ArrayList<>();
@@ -80,7 +82,11 @@ public class BBSFragment extends Fragment {
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(groupID != null){
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("groups").child(groupID);
+        }else{
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+        }
 
         mDatabase.child("threads").addChildEventListener(new ChildEventListener() {
             @Override
@@ -146,11 +152,14 @@ public class BBSFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), CreateThread.class);
+                if(groupID != null){
+                    i.putExtra("groupid", groupID);
+                }
                 startActivity(i);
             }
         });
         mListView = (ListView) v.findViewById(R.id.bbs_list);
-        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mThreadList, inflater, ItemTypes.THREAD_PREVIEW);
+        mItemAdapter = new ItemAdapter<>(getContext(), R.layout.item_list, mThreadList, inflater, ItemTypes.THREAD_PREVIEW, mDatabase);
         mListView.setAdapter(mItemAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -159,6 +168,9 @@ public class BBSFragment extends Fragment {
                 Intent i = new Intent(BBSFragment.this.getContext(), ShowThread.class);
                 Bundle b = new Bundle();
                 b.putString("threadid", tp.getThreadID());
+                if(groupID != null){
+                    b.putString("groupid", groupID);
+                }
                 b.putString("threadtitle", tp.getThreadTitle());
                 b.putStringArray("threadtags", tp.getThreadTags());
                 b.putString("opid", tp.getOpID());

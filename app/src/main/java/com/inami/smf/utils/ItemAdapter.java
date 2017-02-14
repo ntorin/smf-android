@@ -34,12 +34,16 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
     private LayoutInflater mInflater;
     private int mType;
 
-    public ItemAdapter(Context context, int resource, ArrayList<T> objects, LayoutInflater inflater, int type) {
+    public ItemAdapter(Context context, int resource, ArrayList<T> objects, LayoutInflater inflater, int type, DatabaseReference databaseReference) {
         super(context, resource, objects);
 
         firebaseRef = FirebaseAuth.getInstance();
         Uid = firebaseRef.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(databaseReference != null) {
+            mDatabase = databaseReference;
+        }else {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+        }
         mInflater = inflater;
         mType = type;
     }

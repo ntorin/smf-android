@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingStart="15dp"
     android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/group_menu_bbs"
@@ -8,9 +10,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <TextView
+            android:id="@+id/grpbbs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:textSize="18sp"
+            android:text="@string/group_bbs"/>
+        <TextView
+            android:layout_below="@id/grpbbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="@string/group_last_post"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/group_menu_threads"
@@ -18,9 +28,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <TextView
+            android:id="@+id/grpthr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:textSize="18sp"
+            android:text="@string/group_threads"/>
+        <TextView
+            android:layout_below="@id/grpthr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="0"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/group_menu_posts"
@@ -28,9 +46,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <TextView
+            android:id="@+id/grppos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:textSize="18sp"
+            android:text="@string/group_posts"/>
+        <TextView
+            android:layout_below="@id/grppos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="0"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/group_menu_members"
@@ -38,8 +64,16 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <TextView
+            android:id="@+id/grpmem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:textSize="18sp"
+            android:text="@string/group_members"/>
+        <TextView
+            android:layout_below="@id/grpmem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="0"/>
     </RelativeLayout>
 </LinearLayout>

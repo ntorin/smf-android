@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -139,6 +140,23 @@ public class SingleGroupFragment extends Fragment {
         mGroupMenu = (ListView) v.findViewById(R.id.group_menu_list);
         mGroupMenu.setAdapter(new GroupMenuAdapter(getContext(), R.layout.item_list, inflater, new GroupPreview()));
 
+        mGroupMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch(position){
+                    case 0:
+                        mListener.onGroupBBS(groupID);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+        });
+
         TextView groupScreenName = (TextView) v.findViewById(R.id.group_screen_name);
         groupScreenName.setText(getArguments().getString("groupname"));
 
@@ -152,7 +170,6 @@ public class SingleGroupFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
         }
     }
 
@@ -185,6 +202,6 @@ public class SingleGroupFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onGroupBBS(String groupID);
     }
 }

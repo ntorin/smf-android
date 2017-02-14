@@ -90,4 +90,9 @@
     <string name="action_leave_group">Leave Group</string>
     <string name="confirm_join_group">Would you like to join this group?</string>
     <string name="confirm_leave_group">Are you sure you would like to leave this group?</string>
+    <string name="group_bbs">BBS</string>
+    <string name="group_threads">Threads:</string>
+    <string name="group_posts">Posts:</string>
+    <string name="group_members">Members:</string>
+    <string name="group_last_post">Last post:</string>
 </resources>
