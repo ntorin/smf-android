@@ -141,6 +141,11 @@ public class Home extends AppCompatActivity
     }
 
     @Override
+    public void onMessageFocus() {
+
+    }
+
+    @Override
     public void onThreadFocus() {
         Fragment f = ThreadFragment.newInstance();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
