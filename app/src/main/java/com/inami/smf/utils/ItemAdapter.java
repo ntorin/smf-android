@@ -60,7 +60,7 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
                 setupGroupPreview(v, item);
                 break;
             case ItemTypes.MESSAGE_PREVIEW:
-                v.findViewById(R.id.message_preview).setVisibility(View.VISIBLE);
+                setupMessagePreview(v, item);
                 break;
             case ItemTypes.THREAD_POST:
                 setupPost(v, item);
@@ -73,6 +73,46 @@ public class ItemAdapter<T> extends ArrayAdapter<T> {
                 break;
         }
         return v;
+    }
+
+    private void setupMessagePreview(View v, T item) {
+        v.findViewById(R.id.message_preview).setVisibility(View.VISIBLE);
+        MessagePreview mp = (MessagePreview) item;
+
+        final TextView screenName = (TextView) v.findViewById(R.id.message_preview_sender);
+
+        mDatabase.child("users").child(mp.getOpID()).child("screenname").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                screenName.setText((String) dataSnapshot.getValue());
+                Log.d("screenName", "" + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        TextView messageTitle = (TextView) v.findViewById(R.id.message_preview_title);
+        messageTitle.setText(mp.getMessageTitle());
+
+        final TextView messageContent = (TextView) v.findViewById(R.id.message_preview_message);
+
+        mDatabase.child("posts").child(mp.getMessageID()).orderByChild("unixstamp").limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot d : dataSnapshot.getChildren()){
+                    messageContent.setText((String) d.child("content").getValue());
+                    Log.d("post", "" + d.child("content").getValue());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setupGroupPreview(View v, T item) {
