@@ -95,4 +95,5 @@
     <string name="group_posts">Posts:</string>
     <string name="group_members">Members:</string>
     <string name="group_last_post">Last post:</string>
+    <string name="create_message_recipient">Recipients (separate with comma)</string>
 </resources>

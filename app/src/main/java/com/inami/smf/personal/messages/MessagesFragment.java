@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.inami.smf.R;
 import com.inami.smf.utils.ItemAdapter;
 import com.inami.smf.utils.ItemTypes;
@@ -47,6 +48,7 @@ public class MessagesFragment extends Fragment {
 
     private ArrayList<MessagePreview> mMessagesList;
     private ArrayList<String> mKeys;
+    private ArrayList<String> mMessageIDs;
 
     public MessagesFragment() {
         // Required empty public constructor
@@ -86,49 +88,45 @@ public class MessagesFragment extends Fragment {
             mDatabase = FirebaseDatabase.getInstance().getReference();
         }
 
-        mDatabase.child("messages").addChildEventListener(new ChildEventListener() {
+        mDatabase.child("usermessages").child(Uid).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String key = dataSnapshot.getKey();
-                mKeys.add(key);
+                mDatabase.child("messages").child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String key = dataSnapshot.getKey();
+                        mKeys.add(key);
 
-                MessagePreview messagePreview;
-                if(dataSnapshot.child("unixstamp").getValue() != null) {
-                    messagePreview = MessagePreview.createMessagePreview(dataSnapshot);
-                }else{
-                    messagePreview = new MessagePreview();
-                }
-                mMessagesList.add(messagePreview);
-                mItemAdapter.notifyDataSetChanged();
-                Log.d("onChildAdded", "" + dataSnapshot.getValue());
+                        MessagePreview messagePreview;
+                        if(dataSnapshot.child("unixstamp").getValue() != null) {
+                            messagePreview = MessagePreview.createMessagePreview(dataSnapshot);
+                        }else{
+                            messagePreview = new MessagePreview();
+                        }
+                        mMessagesList.add(messagePreview);
+                        mItemAdapter.notifyDataSetChanged();
+                        Log.d("onChildAdded", "" + dataSnapshot.getValue());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                String key = dataSnapshot.getKey();
-                int i = mKeys.indexOf(key);
-                MessagePreview messagePreview = MessagePreview.createMessagePreview(dataSnapshot);
-                mMessagesList.set(i, messagePreview);
-                mItemAdapter.notifyDataSetChanged();
-
-                Log.d("onChildChanged", "" + dataSnapshot.getValue());
 
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String key = dataSnapshot.getKey();
-                int i = mKeys.indexOf(key);
-                mMessagesList.remove(i);
-                mItemAdapter.notifyDataSetChanged();
-
-                Log.d("onChildRemoved", "" + dataSnapshot.getValue());
 
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.d("onChildMoved", "" + dataSnapshot.getValue());
 
             }
 
